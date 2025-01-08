@@ -146,9 +146,12 @@ int conops_serialize_event(const struct conops_event *ev, uint8_t *buffer,
 
   memcpy(&buffer[4], ev->ev_name, sizeof(ev->ev_name));
 
-  if (ignore_callback_src != ev->src)
+  if ((ignore_callback_src != ev->src) && (ev->callback)) {
     memcpy(&buffer[4 + sizeof(ev->ev_name)], &ev->callback,
            sizeof(ev->callback));
+  } else {
+    memset(&buffer[4 + sizeof(ev->ev_name)], 0U, sizeof(ev->callback));
+  }
 
   return 0;
 }
@@ -168,9 +171,12 @@ int conops_deserialize_event(struct conops_event *ev, const uint8_t *buffer,
 
   memcpy(ev->ev_name, &buffer[4], sizeof(ev->ev_name));
 
-  if (ignore_callback_src != ev->src)
+  if (ignore_callback_src != ev->src) {
     memcpy(&ev->callback, &buffer[4 + sizeof(ev->ev_name)],
            sizeof(ev->callback));
+  } else {
+    ev->callback = NULL;
+  }
 
   return 0;
 }
