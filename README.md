@@ -1,2 +1,0 @@
-# libconops
-Initial version
