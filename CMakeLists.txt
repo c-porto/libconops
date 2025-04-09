@@ -10,7 +10,7 @@ set(CMAKE_C_FLAGS_RELEASE "-Os")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wpedantic -Wshadow -Wcast-align -Wwrite-strings")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter -Wno-unused-value -Wno-missing-field-initializers -Wno-narrowing -Wno-pointer-arith")
 
-set(SRC_FILES ${CMAKE_SOURCE_DIR}/src/conops.c)
+set(SRC_FILES ${CMAKE_SOURCE_DIR}/src/conops.c ${CMAKE_SOURCE_DIR}/src/util/cmd_queue.c)
 include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src)
 
 # Static library
