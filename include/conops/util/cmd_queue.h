@@ -31,6 +31,8 @@ int cmd_queue_dequeue(struct conops_cmd_queue *queue, uint32_t current_time,
 
 int cmd_queue_enqueue(struct conops_cmd_queue *queue, const struct conops_cmd *cmd);
 
+void cmd_queue_reset(struct conops_cmd_queue *queue);
+
 bool cmd_queue_is_empty(const struct conops_cmd_queue *queue);
 
 #endif

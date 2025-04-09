@@ -126,6 +126,11 @@ int cmd_queue_dequeue(struct conops_cmd_queue *queue, uint32_t current_time, str
 	return retval;
 }
 
+void cmd_queue_reset(struct conops_cmd_queue *queue)
+{
+	queue->size = 0U;
+}
+
 bool cmd_queue_is_empty(const struct conops_cmd_queue *queue)
 {
 	return (queue->size == 0U);
