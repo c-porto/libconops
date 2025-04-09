@@ -14,6 +14,7 @@ cc = meson.get_compiler('c')
 
 conops_srcs = files(
   'src/conops.c',
+  'src/util/cmd_queue.c',
 )
 
 conops_inc = include_directories('include', 'src')
