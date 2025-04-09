@@ -60,7 +60,7 @@ static void bubble_down(struct conops_cmd *buffer, uint16_t size, uint16_t index
 
 static void heapify(struct conops_cmd *buffer, uint16_t size)
 {
-	for (int32_t i = (int32_t)(size >> 1U) - 1; i >= 0; i--) {
+	for (int32_t i = (int32_t)((size >> 1U) - 1U); i >= 0; i--) {
 		bubble_down(buffer, size, (uint16_t)i);
 	}
 }
@@ -105,7 +105,7 @@ int cmd_queue_dequeue(struct conops_cmd_queue *queue, uint32_t current_time, str
 {
 	int retval = 0;
 
-	if ((queue->size != 0U) || (queue->buffer[0].timestamp <= current_time)) {
+	if ((queue->size != 0U) && (queue->buffer[0].timestamp <= current_time)) {
 		(void)memcpy(out, &queue->buffer[0], sizeof(*out));
 
 		queue->queue_lock(queue->lock);
