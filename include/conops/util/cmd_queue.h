@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define PAYLOAD_SIZE 20
-#define CMD_QUEUE_CAPACITY 20
+#define PAYLOAD_SIZE 20U
+#define CMD_QUEUE_CAPACITY 20U
 
 typedef void (*cmd_queue_lock_t)(void *lock);
 typedef void (*cmd_queue_unlock_t)(void *lock);
