@@ -85,9 +85,9 @@ int cmd_queue_enqueue(struct conops_cmd_queue *queue, const struct conops_cmd *c
 	int err = -1;
 
 	if (queue->size < CMD_QUEUE_CAPACITY) {
-		(void)memcpy(&queue->buffer[queue->size], cmd, sizeof(*cmd));
-
 		queue->queue_lock(queue->lock);
+
+		(void)memcpy(&queue->buffer[queue->size], cmd, sizeof(*cmd));
 
 		queue->size++;
 
@@ -106,9 +106,9 @@ int cmd_queue_dequeue(struct conops_cmd_queue *queue, uint32_t current_time, str
 	int retval = 0;
 
 	if ((queue->size != 0U) && (queue->buffer[0].timestamp <= current_time)) {
-		(void)memcpy(out, &queue->buffer[0], sizeof(*out));
-
 		queue->queue_lock(queue->lock);
+
+		(void)memcpy(out, &queue->buffer[0], sizeof(*out));
 
 		queue->size--;
 
