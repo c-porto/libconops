@@ -58,7 +58,7 @@ static void bubble_down(struct conops_cmd *buffer, uint16_t size, uint16_t index
 	}
 }
 
-static void heapify(struct conops_cmd *buffer, uint16_t size)
+void heapify_cmd_buffer(struct conops_cmd *buffer, uint16_t size)
 {
 	for (int32_t i = (int32_t)((size >> 1U) - 1U); i >= 0; i--) {
 		bubble_down(buffer, size, (uint16_t)i);

@@ -39,6 +39,8 @@ void cmd_queue_reset(struct conops_cmd_queue *queue);
 
 bool cmd_queue_is_empty(const struct conops_cmd_queue *queue);
 
+void heapify_cmd_buffer(struct conops_cmd *buffer, uint16_t size);
+
 #ifdef __cplusplus
 }
 #endif
