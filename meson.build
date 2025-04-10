@@ -1,6 +1,6 @@
 project(
   'libconops',
-  'c',
+  ['c', 'cpp'],
   version: '0.1.0',
   default_options: [
     'warning_level=3',
@@ -32,6 +32,9 @@ c_args = [
   '-Wpedantic',
 ]
 
+gtest_proj = subproject('gtest')
+gtest_main_dep = gtest_proj.get_variable('gtest_main_dep')
+
 static_library(
   'conops',
   sources: conops_srcs,
@@ -40,7 +43,7 @@ static_library(
   install: false,
 )
 
-shared_library(
+libconops = shared_library(
   'conops',
   sources: conops_srcs,
   include_directories: conops_inc,
@@ -48,3 +51,10 @@ shared_library(
   version: meson.project_version(),
   install: false,
 )
+
+conops_dep = declare_dependency(
+  link_with: libconops,
+  include_directories: include_directories('include')
+)
+
+subdir('test')
