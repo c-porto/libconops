@@ -1,6 +1,10 @@
 #ifndef CONOPS_H_
 #define CONOPS_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /* Library ERRNO meanings */
@@ -65,5 +69,9 @@ int conops_fsm_process_event(struct conops_fsm *fsm, const struct conops_event *
 int conops_register_mapper(struct conops_fsm *fsm, conops_event_mapper_t mapper);
 
 int conops_register_fsm_user_data(struct conops_fsm *fsm, void *user_data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

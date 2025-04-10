@@ -1,6 +1,10 @@
 #ifndef CONOPS_CMD_QUEUE_H
 #define CONOPS_CMD_QUEUE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -34,5 +38,9 @@ int cmd_queue_enqueue(struct conops_cmd_queue *queue, const struct conops_cmd *c
 void cmd_queue_reset(struct conops_cmd_queue *queue);
 
 bool cmd_queue_is_empty(const struct conops_cmd_queue *queue);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
