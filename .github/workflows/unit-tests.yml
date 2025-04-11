@@ -1,0 +1,36 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+  workflow_dispatch:
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential python3-pip ninja-build pkg-config
+
+    - name: Install Meson
+      run: pip3 install meson
+
+    - name: Configure build
+      run: |
+        meson setup builddir
+
+    - name: Compile
+      run: |
+        meson compile -C builddir
+
+    - name: Run tests
+      run: |
+        meson test -C builddir --print-errorlogs
