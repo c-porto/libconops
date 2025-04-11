@@ -2,10 +2,13 @@ name: Unit Tests
 
 on:
   push:
-    branches: [ "master", "dev" ]
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+  workflow_dispatch:
 
 jobs:
-  build-and-test:
+  run-unit-tests:
     runs-on: ubuntu-latest
 
     steps:
