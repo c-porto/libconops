@@ -28,7 +28,7 @@ CMake
 Tests
 -----
 
-    To run the library unit tests, assuming that the commands from :ref:`building-sec` to build the library were used, run the following commands.
+    To run the library unit tests, assuming that the commands from `Building Section <#building>`_ to build the library were used, run the following commands.
 
 CMake builds
 ~~~~~~~~~~~~
