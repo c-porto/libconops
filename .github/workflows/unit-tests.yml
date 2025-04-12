@@ -33,4 +33,4 @@ jobs:
 
     - name: Run tests
       run: |
-        meson test -v -C builddir --print-errorlogs
+        meson test -C builddir --print-errorlogs
