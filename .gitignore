@@ -54,3 +54,4 @@ dkms.conf
 # Build system and editor files
 **/build/
 **/.cache/
+**/Testing
