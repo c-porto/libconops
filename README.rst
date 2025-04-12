@@ -1,7 +1,9 @@
 libconops
 =========
 
-A simple library to facilitate the implementation of state machines through transition tables.
+A simple library to facilitate the mission control and planning.
+
+.. _building-sec:
 
 Building
 --------
@@ -10,14 +12,32 @@ Building
 
 Meson
 ~~~~~
-    To build the library with Meson, run the following command on the repo's root::
+    To build the library with Meson, run the following command in the repo's root::
 
         meson setup build
         meson compile -C build
 
 CMake
 ~~~~~
-    To build the library with CMake, run the following command on the repo's root::
+    To build the library with CMake, run the following command in the repo's root::
 
-        cmake -S . -B build
-        cmake --build build
+        mkdir build && cd build
+        cmake ..
+        make
+
+Tests
+-----
+
+    To run the library unit tests, assuming that the commands from :ref:`building-sec` to build the library were used, run the following commands.
+
+CMake builds
+~~~~~~~~~~~~
+     Run in the build directory::
+
+        ctest --output-on-failure
+
+Meson builds
+~~~~~~~~~~~~
+    Run in the repo's root::
+
+        meson test -C build --print-errorlogs
