@@ -27,7 +27,9 @@ struct conops_cmd_queue {
 	cmd_queue_unlock_t queue_unlock;
 };
 
-void cmd_queue_init(struct conops_cmd_queue *queue, void *lock, cmd_queue_lock_t queue_lock,
+void cmd_queue_init(struct conops_cmd_queue *queue);
+
+void cmd_queue_register_lock(struct conops_cmd_queue *queue, void *lock, cmd_queue_lock_t queue_lock,
 		    cmd_queue_unlock_t queue_unlock);
 
 int cmd_queue_dequeue(struct conops_cmd_queue *queue, uint32_t current_time,

@@ -5,7 +5,7 @@
 TEST(CmdQueueTest, EnqueueOneElement)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd;
 	cmd.timestamp = 123;
@@ -23,7 +23,7 @@ TEST(CmdQueueTest, EnqueueOneElement)
 TEST(CmdQueueTest, EnqueueFullQueue)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd;
 	for (uint16_t i = 0; i < CMD_QUEUE_CAPACITY; ++i) {
@@ -37,7 +37,7 @@ TEST(CmdQueueTest, EnqueueFullQueue)
 TEST(CmdQueueTest, DequeueEmptyQueue)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd out{};
 	EXPECT_EQ(cmd_queue_dequeue(&queue, 0, &out), 0);
@@ -46,7 +46,7 @@ TEST(CmdQueueTest, DequeueEmptyQueue)
 TEST(CmdQueueTest, DequeueInOrder)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd1;
 	struct conops_cmd cmd2;
@@ -76,7 +76,7 @@ TEST(CmdQueueTest, DequeueInOrder)
 TEST(CmdQueueTest, RandomOrderEnqueueDequeue)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	uint32_t timestamps[] = { 50, 20, 100, 80, 10 };
 	uint32_t expected[] = { 10, 20, 50, 80, 100 };
@@ -99,7 +99,7 @@ TEST(CmdQueueTest, RandomOrderEnqueueDequeue)
 TEST(CmdQueueTest, DequeueFutureTimestamp)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd;
 	cmd.timestamp = 500;
@@ -116,7 +116,7 @@ TEST(CmdQueueTest, DequeueFutureTimestamp)
 TEST(CmdQueueTest, DequeueInverseEnqueueOrder)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd1;
 	cmd1.timestamp = 500;
@@ -146,7 +146,7 @@ TEST(CmdQueueTest, DequeueInverseEnqueueOrder)
 TEST(CmdQueueTest, QueueReset)
 {
 	struct conops_cmd_queue queue;
-	cmd_queue_init(&queue, nullptr, nullptr, nullptr);
+	cmd_queue_init(&queue);
 
 	struct conops_cmd cmd;
 	cmd.timestamp = 1;
