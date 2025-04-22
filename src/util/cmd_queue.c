@@ -65,19 +65,20 @@ void heapify_cmd_buffer(struct conops_cmd *buffer, uint16_t size)
 	}
 }
 
-void cmd_queue_init(struct conops_cmd_queue *queue, void *lock, cmd_queue_lock_t queue_lock,
-		    cmd_queue_unlock_t queue_unlock)
+void cmd_queue_init(struct conops_cmd_queue *queue)
 {
-	if ((lock == NULL) || (queue_lock == NULL) || (queue_unlock == NULL)) {
-		queue->queue_lock = default_queue_lock;
-		queue->queue_unlock = default_queue_unlock;
-		queue->lock = NULL;
-	} else {
-		queue->queue_lock = queue_lock;
-		queue->queue_unlock = queue_unlock;
-		queue->lock = lock;
-	}
+	queue->queue_lock = default_queue_lock;
+	queue->queue_unlock = default_queue_unlock;
+	queue->lock = NULL;
 	queue->size = 0;
+}
+
+void cmd_queue_register_lock(struct conops_cmd_queue *queue, void *lock,
+			     cmd_queue_lock_t queue_lock, cmd_queue_unlock_t queue_unlock)
+{
+	queue->queue_lock = queue_lock;
+	queue->queue_unlock = queue_unlock;
+	queue->lock = lock;
 }
 
 int cmd_queue_enqueue(struct conops_cmd_queue *queue, const struct conops_cmd *cmd)
