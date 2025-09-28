@@ -62,7 +62,7 @@ struct conops_event {
 
 int conops_fsm_init(struct conops_fsm *fsm, const void *transition_table, const uint16_t n_states,
 		    const uint16_t max_ev_id, const uint16_t init_state,
-		    conops_init_callback_t callback);
+		    conops_init_callback_t callback, void *user_data);
 
 int conops_fsm_process_event(struct conops_fsm *fsm, const struct conops_event *ev);
 

@@ -3,7 +3,7 @@
 
 int conops_fsm_init(struct conops_fsm *fsm, const void *transition_table, const uint16_t n_states,
 		    const uint16_t max_ev_id, const uint16_t init_state,
-		    conops_init_callback_t callback)
+		    conops_init_callback_t callback, void *user_data)
 {
 	if (!fsm || !transition_table)
 		return -ERRNO_CONOPS_INVALID_ARG;
@@ -18,6 +18,7 @@ int conops_fsm_init(struct conops_fsm *fsm, const void *transition_table, const 
 	fsm->conf.max_ev_id = (max_ev_id != 0) ? max_ev_id : CONOPS_DEFAULT_MAX_EV_ID;
 	fsm->conf.init_state = init_state;
 	fsm->state = init_state;
+	fsm->user_data = user_data;
 
 	if (callback) {
 		return callback(fsm);
